@@ -1,0 +1,11 @@
+1. Download jenkins
+- sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+- sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+- sudo amazon-linux-extras install java-openjdk11
+- yum install jenkins
+
+2. Check the default password and change it.
+- cat /var/lib/jenkins/secrets/initialAdminPassword
+
+3. Install git.
+- yum install git
