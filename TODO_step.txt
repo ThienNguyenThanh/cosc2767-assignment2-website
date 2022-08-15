@@ -9,3 +9,11 @@
 
 3. Install git.
 - yum install git
+
+4. Adding Git & Maven Plugin
+
+5. Install Maven and setup $PATH.
+M2_HOME=/opt/maven
+M2=/opt/maven/bin
+JAVA_HOME=/usr/lib/jvm/java-11-openjdk-11.0.13.0.8-1.amzn2.0.3.x86_64
+PATH=$PATH:$HOME/bin:$JAVA_HOME:$M2_HOME:$M2
