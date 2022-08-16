@@ -40,7 +40,7 @@
       <br>
       <span class="badge badge-danger">Writing Blog</span>
       <br>
-      <span class="badge badge-warning">Your Favouritate Programming Language</span>
+      <span class="badge badge-warning">Python <3</span>
       <!-- You only need to change these information, ends here! -->
       
 
