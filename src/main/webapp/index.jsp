@@ -36,7 +36,7 @@
       <br>
       <span class="badge badge-secondary">S3817852</span>
       <br>
-      <span class="badge badge-success">Your Major (and Minor if possible)</span>
+      <span class="badge badge-success">Data Engineer</span>
       <br>
       <span class="badge badge-danger">Your Hobby</span>
       <br>
