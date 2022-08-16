@@ -4,16 +4,43 @@
 - sudo amazon-linux-extras install java-openjdk11
 - yum install jenkins
 
-2. Check the default password and change it.
+
+2. Check the jenkins status.
+- service jenkins status
+- service jenkins start
+* Note: it might take serval minutes to run in the first time.
 - cat /var/lib/jenkins/secrets/initialAdminPassword
 
 3. Install git.
 - yum install git
 
-4. Adding Git & Maven Plugin
+
+4. Adding Git & Maven, Deploy to Container Plugin
 
 5. Install Maven and setup $PATH.
+- wget https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.tar.gz
+- tar xzvf apache-maven-3.8.6-bin.tar.gz
+- mv apache-maven-3.8.6 maven
+
 M2_HOME=/opt/maven
 M2=/opt/maven/bin
 JAVA_HOME=/usr/lib/jvm/java-11-openjdk-11.0.13.0.8-1.amzn2.0.3.x86_64
 PATH=$PATH:$HOME/bin:$JAVA_HOME:$M2_HOME:$M2
+
+source .bash_profile
+
+# Check maven version
+mvn -v
+
+5. Setup Maven and JDK plugins.
+
+6. Create EC2 for Tomcat server
+- wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.65/bin/apache-tomcat-9.0.65.tar.gz
+- tar -xvzf apache-tomcat-9.0.65.tar.gz
+- mv apache-tomcat-9.0.65 tomcat
+
+
+7. Install Docker
+- yum install docker -y
+- service docker status
+- service docker start
