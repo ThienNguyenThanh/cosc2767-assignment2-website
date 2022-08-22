@@ -1,3 +1,5 @@
+### List of plugins in Jenkins: http://updates.jenkins-ci.org/download/plugins/
+
 1. Download jenkins
 - sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
 - sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
