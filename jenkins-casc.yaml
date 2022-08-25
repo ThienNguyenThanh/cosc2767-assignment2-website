@@ -1,0 +1,31 @@
+jenkins:
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+       - id: "admin"
+         password: "admin123"
+  authorizationStrategy: loggedInUsersCanDoAnything
+tool:
+  maven:
+    installations:
+      - name: "Maven 3"
+        home: /opt/maven
+  git:
+    installations:
+      - name: Git
+        home: "git"
+
+  jdk:
+    installations:
+      - name: "JDK 11"
+        home: /usr/lib/jvm/java-11-openjdk-amd64
+
+
+jobs:
+  - script: |
+      job('example 1'){
+          steps{
+              shell("echo It works")
+          }
+      }
