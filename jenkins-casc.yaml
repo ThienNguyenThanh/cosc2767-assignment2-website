@@ -34,20 +34,18 @@ jobs:
               }
           }
           steps {
-              maven('pom.xml')
               maven {
+                  rootPOM('pom.xml')
                   goals('clean')
                   goals('install')
               }
               publishOverSsh {
                   server('docker-server') {
-                      credentials ('dockeradmin') {
-                      
-                      }
-                      label ('44.204.185.88')
                       transferSet {
                           sourceFiles('target/*.war')
                           removePrefix('target')
+                          execCommand('cd /home/dockeradmin')
+                          execCommand('docker run --name tomcat-server -p 8082:8080 --rm thien0611/tomcat')
                       }
                   }
               }
