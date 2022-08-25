@@ -21,3 +21,11 @@ sudo usermod -aG docker ansibleadmin
 echo "ansibleadmin ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
 service sshd reload
+
+# Create dockeradmin in Docker Sever
+useradd dockeradmin
+echo dockeradmin:admin123 | chpasswd
+sudo usermod -aG docker dockeradmin
+echo "ansibleadmin ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
+service sshd reload
