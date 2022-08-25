@@ -25,7 +25,32 @@ tool:
 jobs:
   - script: |
       job('example 1'){
-          steps{
-              shell("echo It works")
+          scm{
+              git {
+                  remote {
+                      url('https://github.com/ThienNguyenThanh/cosc2767-assignment2-website.git')
+                  }
+                  branch('main')
+              }
           }
+          steps {
+              maven('pom.xml')
+              maven {
+                  goals('clean')
+                  goals('install')
+              }
+              publishOverSsh {
+                  server('docker-server') {
+                      credentials ('dockeradmin') {
+                      
+                      }
+                      label ('44.204.185.88')
+                      transferSet {
+                          sourceFiles('target/*.war')
+                          removePrefix('target')
+                      }
+                  }
+              }
+          }
+          
       }
