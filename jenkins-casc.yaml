@@ -38,14 +38,18 @@ jobs:
                   rootPOM('pom.xml')
                   goals('clean')
                   goals('install')
+                  mavenInstallation('Maven 3')
               }
               publishOverSsh {
                   server('docker-server') {
                       transferSet {
                           sourceFiles('target/*.war')
                           removePrefix('target')
-                          execCommand('cd /home/dockeradmin')
-                          execCommand('docker run --name tomcat-server -p 8082:8080 --rm thien0611/tomcat')
+                          execCommand('cd /home/dockeradmin;')
+                          execCommand('docker build -t tomcat:test .;')
+                          execCommand('docker stop tomcat-container;')
+                          execCommand('docker rm tomcat-container;')
+                          execCommand('docker run --name tomcat-container -p 8082:8080 --rm tomcat:test')
                       }
                   }
               }
