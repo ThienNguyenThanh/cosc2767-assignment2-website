@@ -1,8 +1,8 @@
 FROM jenkins/jenkins:lts
 USER root
 RUN apt-get update && apt-get install -y wget
-RUN wget -O /opt/apache-maven-3.8.6-bin.tar.gz https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.tar
-RUN tar xzvf /opt/apache-maven-3.8.6-bin.tar.gz -C /opt/maven
+RUN wget -O /opt/apache-maven-3.8.6-bin.tar.gz https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.tar.gz
+RUN tar xzvf /opt/apache-maven-3.8.6-bin.tar.gz -C /opt
 RUN mv /opt/apache-maven-3.8.6 /opt/maven
 
 RUN apt-get update && \
