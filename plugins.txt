@@ -1,0 +1,6 @@
+github:1.34.5
+configuration-as-code:1512.vb_79d418d5fc8
+deploy:1.16
+job-dsl:1.81
+maven-plugin:3.19
+publish-over-ssh:1.24
