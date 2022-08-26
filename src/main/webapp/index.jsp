@@ -40,7 +40,7 @@
       <br>
       <span class="badge badge-danger">Writing Blog</span>
       <br>
-      <span class="badge badge-warning">Python, C</span>
+      <span class="badge badge-warning">Python, C, Java</span>
       <!-- You only need to change these information, ends here! -->
       
 
