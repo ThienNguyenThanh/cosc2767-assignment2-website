@@ -42,14 +42,40 @@ jobs:
               }
               publishOverSsh {
                   server('docker-server') {
+                      credentials ('ec2-user') {
+                          key ('-----BEGIN RSA PRIVATE KEY-----
+      MIIEpAIBAAKCAQEAueFNvMdiv27CVAeSVyZVuSGxBR/SKcwrguijXEbDfCBHwGz+
+      V0aYGUHycszaGvYnnazobx08aJVo/7Pzu1Bth/qd7ouLpKDcZN4Xu9Jli2lDUiLK
+      aKPFPzReb0W7K73xULicRj1iQlovJHd14nA9q54X5owPrZy83VN746OmFXBX66sj
+      Qp6knyZBFxjnFb5PRRrPJ4UJAN2dxXtKozqVv7FBCXZ3nKaIhHa95KJxFpKg5/V1
+      mkDoUQAozvTHrcBW4B+ZYJKC24eEdGcjXJ/4p7tu/13NdyE8FBSZ/KcXLoHkjY1I
+      cqJed+934vY1lVEjxaSdyaRUk4xOtGs1szv6OQIDAQABAoIBAQCpQbsjlvsYDabu
+      FSbwLHwKY99pJxyb6soEHgoC0HzY3hv34EeI+UMuXJqEZnyD6HkSXowYAassIEDH
+      9fiOLCJQm6iLuo2hjsihIIrEAEVuuJ8Qf5WHyvilIO6MrBZPMlo2gqPqYaLDgJNE
+      xXKWilXdm8tvp0HveLWRY5+AHVfyVBfFdIvjYzbICekdoa/mri3XvGP0ffUN/Bi4
+      97FeWg8YGUEDuyIDqQ7opcQ1h+K1AII2UPORJsr8kY9dNHnII28/ORBS+jQDQK+M
+      RdzMEut97/8oayoduDwb96AwqELfOKgvnDYp8bkWdMtXKenzpQt2EoHXXAYIXryq
+      9HVP2RfxAoGBAOmpdtYQ2N0cJpKAmBs2YEoMO06GwQ5H9ZamFxaZI6QKgEClvG1M
+      DdjrNqFy9RmF6PGX+IKYF/RxpOJ01mMAlTWwCyihspjqTLxRSR+3PlwaoR2si/fg
+      gB+J8OswpPlRq4FiP6zI8e+E23qBVYFxHpQmu9w+bhtFcvAKRtmw7csTAoGBAMum
+      cp5S8gYhGhFtdpAWfcNOEokeOfFweM5+BfitMQUoPkLKu8h2ZwQMracPY1mabgrY
+      aIe4JER9X9tM31ZLVoLUhC8ToYJ7g32yJr5mWzaEpTwhRU5EImYvwykxc8g0nAOO
+      ZYVCu9TS3KkPg9Y/WQ2gHnt1BE0oH0kJXxg6dSMDAoGAO1sZHPfanxBvm/eerAr8
+      GtNQnXoNwJr2//XhF5R/QUSJn+J6IymWuuvFTO3u5TTnH7gDIOmR7D6SLBSSAUQ8
+      ow69Ru0MeVvLcmsTsELUTIFXPDqAs88LvPdFg/kvb0YX0x4qHrJNAxM0zcHc/qzF
+      n8zXG/Of9L2HnQJ/TP1s6pECgYAJVavTTgIB/epv+hCBMka5eQ6oclY9luYysNwd
+      NfMVRW71KM3KtoKqUNp02eO367g3jwvbjLk82nJWXwOttO5WON+GOOQiUv8H9+6G
+      s7JioVnhk7TVjZH2FSJg9P9VofO0xgYpQZHSg4fRyABHBchTM4+yIP79emVUt7VA
+      Kw3LeQKBgQDYnFx6naEuH7VfFnCdytIMTPFR5vlVxjkly5W9zckdoi7PlsBnD3ln
+      4uIH6POHKlggoScxFbJNd718LeEJ8g7XeEFuTOSOfw8c5Oj5P+/8Ehkcguej4Tnk
+      G5K623LGRhC3TkdwGybndfTO5vRkLZI2RTURrrYoH7RcZ3S5TL6YxA==
+      -----END RSA PRIVATE KEY-----')
+                      }
+                      label ('54.165.247.56')
                       transferSet {
                           sourceFiles('target/*.war')
                           removePrefix('target')
-                          execCommand('cd /home/dockeradmin;')
-                          execCommand('docker build -t tomcat:test .;')
-                          execCommand('docker stop tomcat-container;')
-                          execCommand('docker rm tomcat-container;')
-                          execCommand('docker run --name tomcat-container -p 8082:8080 --rm tomcat:test')
+                          execCommand('cd /home/dockeradmin; docker stop tomcat-container; docker rm tomcat-container; docker run --name tomcat-container -p 8082:8080 --rm thien0611/tomcat:2.2; docker cp ./*.war /opt/tomcat/webapps;')
                       }
                   }
               }
