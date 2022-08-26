@@ -41,6 +41,9 @@
       <span class="badge badge-danger">Writing Blog</span>
       <br>
       <span class="badge badge-warning">Python, C, Java</span>
+      <br>
+      <span class="badge badge-warning">Jay, it works</span>
+      
       <!-- You only need to change these information, ends here! -->
       
 
