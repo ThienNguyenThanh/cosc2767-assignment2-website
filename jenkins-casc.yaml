@@ -50,7 +50,11 @@ jobs:
                       transferSet {
                           sourceFiles('target/*.war')
                           removePrefix('target')
-                          execCommand('cd /home/dockeradmin; docker stop tomcat-container; docker rm tomcat-container; docker run -d --name tomcat-container -p 8082:8080 --rm thien0611/tomcat:2.2; docker cp ./*.war /opt/tomcat/webapps;')
+                          execCommand('''sudo usermod -aG docker ec2-user;
+                                      cd /home/ec2-user; 
+                                      docker run -d --name tomcat-container -p 8082:8080 --rm thien0611/tomcat:2.1; 
+                                      docker cp ./*.war tomcat-container:/opt/tomcat/webapps;
+                                      ''')
                       }
                   }
               }
