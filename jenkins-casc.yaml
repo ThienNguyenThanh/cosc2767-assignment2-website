@@ -24,14 +24,14 @@ tool:
 
 jobs:
   - script: |
-      job('example 1'){
+      job('Assignment 2'){
           triggers {
               scm('* * * * *')
           }
           scm{
               git {
                   remote {
-                      url('https://github.com/ThienNguyenThanh/cosc2767-assignment2-website.git')
+                      url('https://github.com/S3817852/cosc2767-assignment2-website/')
                   }
                   branch('main')
               }
