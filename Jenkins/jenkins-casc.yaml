@@ -1,0 +1,76 @@
+# RMIT University Vietnam
+# Course: COSC2767 Systems Deployment and Operations
+# Semester: 2022B
+# Assessment: Assignment 2
+# Author: Nguyen Thanh Thien
+# ID: S3817852
+# Created  date: 18/08/2022 
+# Last modified: 28/08/2022  
+# Acknowledgement: Acknowledge the resources that you use here. 
+
+jenkins:
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+       - id: "admin"
+         password: "admin123"
+  authorizationStrategy: loggedInUsersCanDoAnything
+tool:
+  maven:
+    installations:
+      - name: "Maven 3"
+        home: /opt/maven
+  git:
+    installations:
+      - name: Git
+        home: "git"
+
+  jdk:
+    installations:
+      - name: "JDK 11"
+        home: /usr/lib/jvm/java-11-openjdk-amd64
+
+
+jobs:
+  - script: |
+      job('Assignment 2'){
+          triggers {
+              scm('* * * * *')
+          }
+          scm{
+              git {
+                  remote {
+                      url('https://github.com/S3817852/cosc2767-assignment2-website.git')
+                  }
+                  branch('main')
+              }
+          }
+          steps {
+              maven {
+                  rootPOM('pom.xml')
+                  goals('clean')
+                  goals('install')
+                  mavenInstallation('Maven 3')
+              }
+          }
+          publishers {
+              publishOverSsh {
+                  server('tomcat-server') {
+                      transferSet {
+                          sourceFiles('target/*.war')
+                          removePrefix('target')
+                          execCommand('''
+                                      sudo yum install docker -y;
+                                      sudo service docker start;
+                                      sudo usermod -aG docker ec2-user;
+                                      cd /home/ec2-user; 
+                                      sudo docker run -d --name tomcat-container -p 8082:8080 --rm thien0611/s3817852-tomcat:final; 
+                                      sudo docker cp ./*.war tomcat-container:/opt/tomcat/webapps;
+                                      ''')
+                      }
+                  }
+              }
+          }
+          
+      }
